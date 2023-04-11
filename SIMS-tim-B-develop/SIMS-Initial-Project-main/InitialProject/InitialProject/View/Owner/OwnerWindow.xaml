@@ -1,0 +1,113 @@
+﻿<Window x:Class="InitialProject.View.Owner.OwnerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InitialProject.View.Owner"
+        mc:Ignorable="d"
+        Title="DMJM-Tours" Height="450" Width="800" WindowStartupLocation="CenterScreen"
+        Icon ="/Resources/Images/favicon.ico">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- User information section -->
+        <StackPanel Grid.Row="0" Margin="10" Orientation="Horizontal">
+            <Image Source="/Resources/Images/owner.png" Width="100" Height="75" Margin="0 0 10 0" />
+            <StackPanel>
+                <TextBlock FontSize="18" FontWeight="Bold" Text="Accommodation Owner" Margin="0 0 0 10"/>
+                <TextBlock FontSize="14" Text="{Binding LoggedInUser.Username, FallbackValue=BindingNotWorking}"/>
+                <Button Content="Log Out" Margin="0 10 0 0" Width="50" Click="LogOut_Click" HorizontalAlignment="Left"/>
+            </StackPanel>
+        </StackPanel>
+        <TabControl Grid.Row="1">
+            <TabItem Header="Accommodations">
+                <StackPanel Margin="10">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontSize="18" FontWeight="Bold" Text="Accommodations" Margin="0 0 10 0"/>
+                        <Button Content="Register" Width="80" Margin="0 0 10 0" Click="RegisterButton_Click"/>
+                        <Button Content="Remove" Width="80" Margin="0 0 10 0" Click="DeleteButton_Click"/>
+                    </StackPanel>
+                    <StackPanel Margin="0 10 0 0">
+                        <DataGrid DockPanel.Dock="Bottom" 
+                                  ItemsSource="{Binding Path=Accommodations, UpdateSourceTrigger=PropertyChanged}"
+                                  SelectedItem="{Binding Path=SelectedAccommodation, UpdateSourceTrigger=PropertyChanged}"
+                                  AutoGenerateColumns="False" IsReadOnly="True"
+                                  Width="700" Height="200">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Type" Binding="{Binding Type}" Width="*"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Max Guests" Binding="{Binding MaxGuests}" Width="*"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Min Reservation Days" Binding="{Binding MinReservationDays}" Width="*"></DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Reschedule Requests">
+                <StackPanel Margin="10">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontSize="18" FontWeight="Bold" Text="Reschedule Requests" Margin="0 0 10 0"/>
+                        <Button Content="Decide" Width="80" Margin="0 0 10 0" Click="DecideButton_Click"/>
+                    </StackPanel>
+                    <StackPanel Margin="0 10 0 0">
+                        <DataGrid DockPanel.Dock="Bottom" 
+                                  ItemsSource="{Binding Path=Requests, UpdateSourceTrigger=PropertyChanged}"
+                                  SelectedItem="{Binding Path=SelectedRequest, UpdateSourceTrigger=PropertyChanged}"
+                                  AutoGenerateColumns="False" IsReadOnly="True"
+                                  Width="700" Height="200">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Reservation Id" Binding="{Binding ReservationId}" Width="*"></DataGridTextColumn>
+                                <DataGridTextColumn Header="New Start Date" Binding="{Binding NewStartDate}" Width="2*"></DataGridTextColumn>
+                                <DataGridTextColumn Header="New End Date" Binding="{Binding NewEndDate}" Width="2*"></DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Ratings">
+                <StackPanel Margin="10">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontSize="18" FontWeight="Bold" Text="Ratings" Margin="0 0 10 0"/>
+                    </StackPanel>
+                    <StackPanel Margin="0 10 0 0">
+                        <DataGrid DockPanel.Dock="Bottom" 
+                                  ItemsSource="{Binding Path=RatingsDTO, UpdateSourceTrigger=PropertyChanged}"
+                                  AutoGenerateColumns="False" IsReadOnly="True"
+                                  Width="700" Height="200">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Username" Binding="{Binding UserName}" Width="*"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Accommodation" Binding="{Binding AccommodationName}" Width="2*"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Cleanliness" Binding="{Binding Cleanliness}" Width="*"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Correctness" Binding="{Binding Correctness}" Width="*"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Comment" Binding="{Binding Comment}" Width="2*"></DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Guest Reviews">
+                <StackPanel Margin="10">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontSize="18" FontWeight="Bold" Text="Guest Reviews" Margin="0 0 10 0"/>
+                        <Button Content="Review Guest" Width="80" Margin="0 0 10 0" Click="ReviewGuestButton_Guest"/>
+                    </StackPanel>
+                    <StackPanel Margin="0 10 0 0">
+                        <DataGrid DockPanel.Dock="Bottom" 
+                                  ItemsSource="{Binding Path=UnreviewedGuests, UpdateSourceTrigger=PropertyChanged}"
+                                  SelectedItem="{Binding Path=SelectedUnreviewedGuest, UpdateSourceTrigger=PropertyChanged}"
+                                  AutoGenerateColumns="False" IsReadOnly="True"
+                                  Width="700" Height="200">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="User Name" Binding="{Binding UserName}" Width="*"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Accommodation Name" Binding="{Binding AccommodationName}" Width="*"></DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

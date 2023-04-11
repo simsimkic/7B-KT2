@@ -1,0 +1,161 @@
+﻿<Window x:Class="InitialProject.View.Guest2.Guest2Window"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InitialProject.View.Guest2"
+        mc:Ignorable="d"
+        Title="DMJM-Tours" Height="450" Width="800"
+        Icon ="/Resources/Images/favicon.ico">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- User information section -->
+        <StackPanel Grid.Row="0" Margin="10" Orientation="Horizontal">
+            <Image Source="/Resources/Images/guest2.png" Width="100" Height="75" Margin="0 0 10 0" />
+            <StackPanel>
+                <TextBlock FontSize="18" FontWeight="Bold" Text="Guest 2" Margin="0 0 0 10"/>
+                <TextBlock FontSize="14" Text="{Binding LoggedInUser.Username, FallbackValue=BindingNotWorking}"/>
+                <Button Content="Log Out" Margin="0 10 0 0" Width="50" Click="LogOut_Click" HorizontalAlignment="Left"/>
+            </StackPanel>
+        </StackPanel>
+
+        <!-- Tabs section -->
+        <TabControl Grid.Row="1">
+            <!-- Overview tab -->
+            <TabItem Header="Tour reservation">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Tour list section -->
+                    <Grid Grid.Row="0" Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Row="0" Text="Country:" Margin="0 0 5 0" VerticalAlignment="Center"/>
+                        <TextBox  Width="150" Margin="0 0 10 0" Grid.Column="1" Text="{Binding Country}"/>
+
+                        <TextBlock Grid.Row="0" Text="City:" Margin="0 0 5 0" VerticalAlignment="Center" Grid.Column="2"/>
+                        <TextBox Width="150" Margin="0 0 10 0" Grid.Column="3" Text="{Binding City}"/>
+
+                        <TextBlock Grid.Row="0" Text="Language:" Margin="0 0 5 0" VerticalAlignment="Center" Grid.Column="4"/>
+                        <TextBox  Width="150" Margin="0 0 10 0" Grid.Column="5" Text="{Binding TourLanguage}"/>
+
+                        <TextBlock Grid.Row="0"  Text="Person Count:" Margin="0 0 5 0" VerticalAlignment="Center" Grid.Column="6"/>
+                        <TextBox  Width="50" Height="25" Margin="0 0 10 0" Grid.Column="7" Text="{Binding PersonCount}"/>
+
+                        <Button Grid.Row="0"  Name="search" Content="Search" Click="Search_Click" Grid.Column="8" FontWeight="Bold" HorizontalAlignment="Right" Margin="30 0 0 0"/>
+
+                    </Grid>
+
+                    <!-- Tour overview section -->
+                    <GroupBox Grid.Row="1" Header="Explore Tours" Margin="0 0 0 10">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <DataGrid ItemsSource="{Binding TourDTOs}" 
+                                      SelectedItem="{Binding Path=SelectedGuest2TourDTO}"
+                                      AutoGenerateColumns="False" IsReadOnly="True">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"/>
+                                    <DataGridTextColumn Header="Country" Binding="{Binding Country}" Width="*"/>
+                                    <DataGridTextColumn Header="City" Binding="{Binding City}" Width="*"/>
+                                    <DataGridTextColumn Header="Language" Binding="{Binding Language}" Width="*"/>
+                                    <DataGridTextColumn Header="Max Guests" Binding="{Binding MaxGuests}" Width="*"/>
+                                    <DataGridTextColumn Header="Current Guest Count" Binding="{Binding CurrentGuestCount}" Width="*"/>
+                                    <DataGridTextColumn Header="Duration (hours)" Binding="{Binding Duration}" Width="*"/>
+                                    <DataGridTemplateColumn Header="Show more">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button Click="ShowMoreButton_Click">
+                                                    <Image Height="10px" Source="/Resources/Images/inspection.png" />
+                                                </Button>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </ScrollViewer>
+                    </GroupBox>
+                    <Button Grid.Row="2" Name="reserve" Content="Reserve Tour" Click="ReserveButton_Click" Width="200" Margin="10 0 0 0" FontWeight="Bold" HorizontalAlignment="Center"/>
+                </Grid>
+            </TabItem>
+
+            <!-- Ratings tab -->
+            <TabItem Header="Ratings" Height="22" Margin="-2,-2,-2,0" VerticalAlignment="Top">
+                <StackPanel Margin="10">
+
+                    <!-- Tour overview section -->
+                    <GroupBox Grid.Row="1" Header="Finished Tours" Margin="0 0 0 10" Height="221" Width="532">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <DataGrid ItemsSource="{Binding FinishedTourDTOs}" 
+                                      SelectedItem="{Binding Path=SelectedGuest2TourDTO}"
+                                      AutoGenerateColumns="False" IsReadOnly="True" Height="200" Width="500">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"/>
+                                    <DataGridTextColumn Header="Country" Binding="{Binding Country}" Width="*"/>
+                                    <DataGridTextColumn Header="City" Binding="{Binding City}" Width="*"/>
+                                    <DataGridTextColumn Header="Date and Time" Binding="{Binding Guide}" Width="*"/>
+                                    <DataGridTemplateColumn Header="Show more" Width="*">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button Click="ShowMoreButton_Click">
+                                                    <Image Height="10px" Source="/Resources/Images/inspection.png" />
+                                                </Button>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </ScrollViewer>
+                    </GroupBox>
+                    
+                    <!-- Rate Tour -->
+                    <StackPanel Orientation="Horizontal" Margin="0, 10,0,0">
+                        <Button Content="Rate This Tour" Width="100" Height="40" HorizontalAlignment="Center" Margin="300,0,40,0" Click="RateButton_Click"/>
+                    </StackPanel>
+                </StackPanel>
+            </TabItem>
+
+            <!-- Currently Active Tour tab -->
+            <TabItem Header="Currently Active Tour">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="25*"/>
+                        <ColumnDefinition Width="75*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="0">Currently Active tour:</Label>
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Path=CurrentlyActiveTour.Name, FallbackValue=NoTourCurrentlyActive}"/>
+
+                    <Label Grid.Row="1" Grid.Column="0">Currently Active checkpoint:</Label>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=CurrentlyActiveCheckpoint.Name, FallbackValue=NoTourCurrentlyActive}"/>
+
+
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+    </Grid>
+</Window>

@@ -1,0 +1,27 @@
+﻿<Window x:Class="InitialProject.View.Guest2.TourImages"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InitialProject.View.Guest2"
+        mc:Ignorable="d"
+        Title="DMJM-Tours" Height="450" Width="800"
+        Icon ="/Resources/Images/favicon.ico">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="500"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Image Name="picHolder" Grid.Column="1" Grid.Row="1" Stretch="Uniform"/>
+
+        <Button Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Width="150" Height="35" Content="Back" Click="backButton_Click"/>
+        <Button Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Width="150" Height="35" Content="Next" Click="nextButton_Click_1"/>
+    </Grid>
+</Window>

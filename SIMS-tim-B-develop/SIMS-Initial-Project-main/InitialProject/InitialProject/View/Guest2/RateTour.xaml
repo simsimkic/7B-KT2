@@ -1,0 +1,62 @@
+﻿<Window x:Class="InitialProject.View.Guest2.RateTour"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InitialProject.View.Guest2"
+        mc:Ignorable="d"
+        Title="RateTour" Height="768" Width="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Margin="0,10,0,0" Content ="1. How would you rate your tour guide's knowledge?*" />
+        <StackPanel Orientation="Horizontal" Margin="10,40,0,0">
+            <RadioButton Name="knowledge1"  Content="1" IsChecked="{Binding GuideKnowledge, UpdateSourceTrigger=PropertyChanged}"/>
+            <RadioButton Name="knowledge2" Content="2" IsChecked="{Binding GuideKnowledge, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,0,0"/>
+            <RadioButton Name="knowledge3" Content="3" IsChecked="{Binding GuideKnowledge, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,0,0"/>
+            <RadioButton Name="knowledge4" Content="4" IsChecked="{Binding GuideKnowledge, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,0,0"/>
+            <RadioButton Name="knowledge5" Content="5" IsChecked="{Binding GuideKnowledge, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,0,0"/>
+        </StackPanel>
+
+        <Label Margin="0,70,0,0" Content="2. How interesting was this tour?*" />
+        <StackPanel Orientation="Horizontal" Margin="10,100,0,0">
+            <RadioButton Name="interestingness1" Content="1" IsChecked="{Binding Interestingness, UpdateSourceTrigger=PropertyChanged}"/>
+            <RadioButton Name="interestingness2" Content="2" IsChecked="{Binding Interestingness, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,0,0"/>
+            <RadioButton Name="interestingness3" Content="3" IsChecked="{Binding Interestingness, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,0,0"/>
+            <RadioButton Name="interestingness4" Content="4" IsChecked="{Binding Interestingness, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,0,0"/>
+            <RadioButton Name="interestingness5" Content="5" IsChecked="{Binding Interestingness, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,0,0"/>
+        </StackPanel>
+
+        <Label Margin="0,150,0,0" Content="3. How would you rate your tour guide's language?*" />
+        <StackPanel Orientation="Horizontal" Margin="10,180,0,0">
+            <RadioButton Name="language1" Content="1" IsChecked="{Binding GuideLanguage, UpdateSourceTrigger=PropertyChanged}"/>
+            <RadioButton Name="language2" Content="2" IsChecked="{Binding GuideLanguage, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,0,0"/>
+            <RadioButton Name="language3" Content="3" IsChecked="{Binding GuideLanguage, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,0,0"/>
+            <RadioButton Name="language4" Content="4" IsChecked="{Binding GuideLanguage, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,0,0"/>
+            <RadioButton Name="language5" Content="5" IsChecked="{Binding GuideLanguage, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,0,0"/>
+        </StackPanel>
+
+        <Label Margin="0,210,0,0" Content="4. Write a comment (optional):" />
+        <TextBox x:Name="commentTextBox" Width="350" Height="100" Margin="10,235,440,27"  Text="{Binding Path=Comment, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <StackPanel Orientation="Horizontal" Margin="0,10" Grid.Row="3">
+            <Label Content="5. Add one or more images (optional):" Margin="0,5,0,0"/>
+            <TextBox x:Name="UrlTextBox" Width="150" Height="20" Margin="0,0,0,110" />
+            <Button Click="AddImage_Click" Width="30" Height="20" Margin="5,0,0,110">
+                <Image Source="/Resources/Images/upload.png" Height="15" Width="30" />
+            </Button>
+            <ListBox x:Name="UrlListBox" Width="220" Height="40" Margin="10,5,0,110" ItemsSource="{Binding ImageUrls}" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="0,10,0,0" Grid.Row="4">
+            <Button Content="Submit Review" Click="Submit_Click" Height="30" Width="110" Margin="60,0,40,0"/>
+            <Button Content="Cancel" Click="Cancel_Click" Height="30" Width="110" Margin="60,0,40,0" />
+        </StackPanel>
+
+    </Grid>
+</Window>

@@ -1,0 +1,53 @@
+1|Dotonbori Bridge|1|False|1
+2|Kuromon Ichiba Market|2|False|1
+3|Shitennoji Temple|3|False|1
+4|Osaka Castle Park|4|False|1
+5|START|1|False|3
+6|MID|2|False|3
+7|END|3|False|3
+8|Dotonbori Bridge|1|False|4
+9|Kuromon Ichiba Market|2|False|4
+10|Shitennoji Temple|3|False|4
+11|Osaka Castle Park|4|False|4
+12|Plaza Bolivar|1|False|1
+13|Parque Fernando Penalver|2|False|1
+14|Mercado Central|3|False|1
+15|c1|1|False|2
+16|c2|2|False|2
+17|c3|3|False|2
+18|fds|1|False|3
+19|fsd|2|False|3
+20|fds|3|False|3
+21|fds|1|False|4
+22|dfs|2|False|4
+23|fdsafa|1|False|5
+24|fdsa|2|False|5
+25|Harpa Concert Hall|1|False|6
+26|Thingvellir National Park|2|False|6
+27|Gullfoss Waterfall|3|False|6
+28|Geysir Hot Springs Area|4|False|6
+29|Reykjanes Peninsula|5|False|6
+30|Hallgrimskirkja Church|6|False|6
+31|fsaas|1|False|7
+32|dfsaas|2|False|7
+33|dfs|1|False|8
+34|fds|2|False|8
+35|fdf|1|False|9
+36|fsdfsd|2|False|9
+37|Dotonbori Bridge|1|False|2
+38|Kuromon Ichiba Market|2|False|2
+39|Shitennoji Temple|3|False|2
+40|Osaka Castle Park|4|False|2
+41|Khan el-Khalili Bazaar|1|False|4
+42|Egyptian Museum|2|False|4
+43|Al-Azhar Mosque|3|False|4
+44|Bab Zuweila|4|False|4
+45|Coptic Cairo|5|False|4
+46|Saladin Citadel|6|False|4
+47|Nile River Cruise|7|False|4
+48|Tahrir Square|8|False|4
+49|11|1|False|5
+50|12|2|False|5
+51|13|3|False|5
+52|122|1|False|6
+53|123|2|False|6
